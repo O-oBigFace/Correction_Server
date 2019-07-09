@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from sementic_server.source.intent_extraction.item_matcher import ItemMatcher
 from django.http import JsonResponse
 import timeit
+import json
 import logging
 logger = logging.getLogger("server_log")
 
@@ -22,12 +23,14 @@ def correct(request):
     if request.method != 'POST':
         logger.error("仅支持post访问")
         return JsonResponse({"result": {}, "msg": "仅支持post访问"}, json_dumps_params={'ensure_ascii': False})
-    request_data = request.POST
+    try:
+        request_data = json.loads(request.body)
+    except Exception:
+        request_data = request.POST
     print(request)
     sentence = request_data['sentence']
-    account = request_data.get('account', None)
+    account = None
     need_correct = request_data.get('need_correct', True)
-
 
     start_time = timeit.default_timer()
     result = dict()
