@@ -1,3 +1,12 @@
+numpy==1.15.0
+tensorflow-serving-api==1.13.0
+grpcio==1.15.0
+tensorflow==1.12.0
 django==2.2
+jieba==0.39
+requests==2.19.1
+networkx==2.3
 pyyaml==3.12
-pypinyin==0.34.1
+pypinyin==0.35.4
+pandas==0.24.2
+redis==3.2.1
